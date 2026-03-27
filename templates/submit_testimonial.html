@@ -1,0 +1,80 @@
+{% load static %}
+
+<div class="blue_bg">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="titlepage">
+               <h2>Share Your Experience</h2>
+               <p>Help others by sharing your feedback</p>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<section class="submit-testimonial-section py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card">
+          <div class="card-body">
+            <form method="post">
+              {% csrf_token %}
+              
+              <div class="mb-3">
+                <label for="{{ form.name.id_for_label }}" class="form-label">Your Name</label>
+                {{ form.name }}
+                {% if form.name.errors %}
+                  <div class="text-danger small">{{ form.name.errors.0 }}</div>
+                {% endif %}
+              </div>
+
+              <div class="mb-3">
+                <label for="{{ form.email.id_for_label }}" class="form-label">Email Address</label>
+                {{ form.email }}
+                {% if form.email.errors %}
+                  <div class="text-danger small">{{ form.email.errors.0 }}</div>
+                {% endif %}
+              </div>
+
+              <div class="mb-3">
+                <label for="{{ form.rating.id_for_label }}" class="form-label">Rating</label>
+                {{ form.rating }}
+                {% if form.rating.errors %}
+                  <div class="text-danger small">{{ form.rating.errors.0 }}</div>
+                {% endif %}
+              </div>
+
+              <div class="mb-3">
+                <label for="{{ form.content.id_for_label }}" class="form-label">Your Review</label>
+                {{ form.content }}
+                {% if form.content.errors %}
+                  <div class="text-danger small">{{ form.content.errors.0 }}</div>
+                {% endif %}
+                <div class="form-text">Maximum 500 characters</div>
+              </div>
+
+              <div class="d-flex justify-content-between">
+                <a href="{% url 'home' %}" class="btn btn-secondary">Cancel</a>
+                <button type="submit" class="btn btn-primary">Submit Review</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <div class="alert alert-info">
+            <h6><i class="fas fa-info-circle"></i> Review Guidelines</h6>
+            <ul class="mb-0 small">
+              <li>Keep your review honest and genuine</li>
+              <li>Focus on your experience with our products and service</li>
+              <li>Avoid inappropriate language or personal attacks</li>
+              <li>Your review will be reviewed by our team before publication</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
